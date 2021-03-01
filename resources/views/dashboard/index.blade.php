@@ -12,7 +12,7 @@
 <body>
 
 <div id="app">
-    <app-init></app-init>
+    @inertia
 </div>
 
 <script src="{{ mix('js/app.js') }}"></script>
