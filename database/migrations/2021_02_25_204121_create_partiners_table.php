@@ -15,6 +15,8 @@ class CreatePartinersTable extends Migration
     {
         Schema::create('partiners', function (Blueprint $table) {
             $table->id();
+            $table->string('name')->default('p');
+            $table->foreignId('company_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -10,9 +10,10 @@ Route::get('/dashboard', function () {
 
 Auth::routes();
 
-Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'website\CompanyController@index')->name('home');
+// Route::get('/home', 'HomeController@index')->name('home');
 
-Route::resource('/','Website\CompanyController');
-Route::resource('services','Website\SeviceController');
-Route::resource('teams','Website\TeamController');
-Route::resource('protfolios','Website\ProtfolioController');
+// Route::resource('/','Website\CompanyController');
+// Route::resource('services','Website\SeviceController');
+// Route::resource('teams','Website\TeamController');
+// Route::resource('protfolios','Website\ProtfolioController');

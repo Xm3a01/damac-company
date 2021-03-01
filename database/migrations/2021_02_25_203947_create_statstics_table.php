@@ -15,6 +15,9 @@ class CreateStatsticsTable extends Migration
     {
         Schema::create('statstics', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->float('percent')->default(0);
+            $table->foreignId('company_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }

@@ -15,6 +15,9 @@ class CreateMediaLinksTable extends Migration
     {
         Schema::create('media_links', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('icon');
+            $table->foreignId('team_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });
     }
