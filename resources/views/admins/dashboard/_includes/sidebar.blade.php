@@ -14,44 +14,47 @@
                     <p>Home</p>
                 </a>
             </li>
-            {{-- @if (Auth::guard('admin')->user()->is_supervisor) --}}
-            <li class="{{ request()->is('*courses*') ? 'active' : '' }}">
-                <a href="{{ route('courses.index') }}">
-                    <i class="nc-icon nc-caps-small"></i>
-                    <p>courses</p>
-                </a>
-            </li>
-            <li class="{{ request()->is('*events*') ? 'active' : '' }}">
-                <a href="{{ route('events.index') }}">
+
+            <li class="{{ request()->is('*companies*') ? 'active' : '' }}">
+                <a href="{{ route('companies.index') }}">
                     <i class="nc-icon nc-bell-55"></i>
-                    <p>Events</p>
+                    <p>Companies</p>
                 </a>
             </li>
-            <li class="{{ request()->is('*galleries*') ? 'active' : '' }}">
-                <a href="{{ route('galleries.index') }}">
+
+            <li class="{{ request()->is('*services*') ? 'active' : '' }}">
+                <a href="{{ route('services.index') }}">
                     <i class="nc-icon nc-caps-small"></i>
-                    <p>Gallery</p>
+                    <p>Services</p>
                 </a>
             </li>
-            @else
-            <li class="{{ request()->is('*courses*') ? 'active' : '' }}">
-                <a href="{{ route('courses.index') }}">
-                    <i class="nc-icon nc-caps-small"></i>
-                    <p>courses</p>
-                </a>
-            </li>
-            <li class="{{ request()->is('*events*') ? 'active' : '' }}">
-                <a href="{{ route('events.index') }}">
+            <li class="{{ request()->is('*teams*') ? 'active' : '' }}">
+                <a href="{{ route('teams.index') }}">
                     <i class="nc-icon nc-bell-55"></i>
-                    <p>Events</p>
+                    <p>Team</p>
                 </a>
             </li>
-            <li class="{{ request()->is('*managers*') ? 'active' : '' }}">
-                <a href="{{ route('managers.index') }}">
+            <li class="{{ request()->is('*protfolios*') ? 'active' : '' }}">
+                <a href="{{ route('protfolios.index') }}">
+                    <i class="nc-icon nc-caps-small"></i>
+                    <p>Portfolios</p>
+                </a>
+            </li>
+
+            <li class="{{ request()->is('*partiners*') ? 'active' : '' }}">
+                <a href="{{ route('partiners.index') }}">
+                    <i class="nc-icon nc-caps-small"></i>
+                    <p>Partiners</p>
+                </a>
+            </li>
+             
+            <li class="{{ request()->is('*links*') ? 'active' : '' }}">
+                <a href="{{ route('links.index') }}">
                     <i class="nc-icon nc-single-02"></i>
-                    <p>managers</p>
+                    <p>Media links</p>
                 </a>
             </li>
+            {{--
             <li class="{{ request()->is('*students*') ? 'active' : '' }}">
                 <a href="{{ route('students.index') }}">
                     <i class="nc-icon nc-badge"></i>
@@ -70,7 +73,7 @@
                     <i class="nc-icon nc-single-02"></i>
                     <p>Trainers</p>
                 </a>
-            </li>
+            </li> --}}
             {{-- @endif --}}
         </ul>
     </div>

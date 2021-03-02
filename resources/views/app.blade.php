@@ -5,16 +5,22 @@
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Hash.D.P</title>
-    <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700,900" rel="stylesheet">
-    <link href="https://cdn.jsdelivr.net/npm/@mdi/font@5.x/css/materialdesignicons.min.css" rel="stylesheet">
+    <title>Hash developed Projects</title>
+    @include('_include.styles')
 </head>
-<body>
+<body style="background-color: #f4f3ef;">
+   <div class="container">
+    <div class="wrapper ">
+     <div class="main-panel">
 
-{{-- <div id="app"> --}}
-    @inertia
-{{-- </div> --}}
+      @inertia
 
-<script src="{{ mix('js/app.js') }}"></script>
+    </div>
+   </div>
+ </div>
+
+  @include('_include.scripts')
+  @include('_include.messages')
+
 </body>
 </html>

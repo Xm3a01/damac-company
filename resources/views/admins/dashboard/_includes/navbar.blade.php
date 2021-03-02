@@ -36,7 +36,7 @@
                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         <i class="nc-icon nc-single-02"></i>
                         <p>
-                            <span class="d-lg-none d-md-block pl-3">{{ Auth::user()->name }}</span>
+                            <span class="d-lg-none d-md-block pl-3">{{ Auth::user()->name ?? "" }}</span>
                         </p>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userAcountLink">

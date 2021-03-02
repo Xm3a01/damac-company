@@ -1,21 +1,32 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-12">
-                <div class="card">
-                    <div class="card-header">{{ header }}</div>
+     <div class="wrapper ">
 
-                    <div class="card-body">
-                        <slot></slot>
-                    </div>
-                </div>
-            </div>
-        </div>
+      <!-- side bar -->
+            <side-bar />             
+
+    <div class="main-panel">
+      <!-- Navbar -->
+            <nav-bar />
+      
+      <!-- End Navbar -->
+      <div class="content">
+
+            <slot></slot>
+            
+      </div>
     </div>
+  </div>
+
 </template>
 
 <script>
+import navBar from "../Include/Navbar"
+import sideBar from "../Include/Sidebar"
     export default {
+        components:{
+            navBar,
+            sideBar
+        },
         props:{
            header : String 
         },
@@ -27,5 +38,4 @@
 </script>
 
 <style>
- @import 'vuetify/dist/vuetify.min.css';
 </style>
