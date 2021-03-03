@@ -34,8 +34,8 @@
                     <p>Team</p>
                 </a>
             </li>
-            <li class="{{ request()->is('*protfolios*') ? 'active' : '' }}">
-                <a href="{{ route('protfolios.index') }}">
+            <li class="{{ request()->is('*portfolios*') ? 'active' : '' }}">
+                <a href="{{ route('portfolios.index') }}">
                     <i class="nc-icon nc-caps-small"></i>
                     <p>Portfolios</p>
                 </a>
@@ -54,13 +54,14 @@
                     <p>Media links</p>
                 </a>
             </li>
-            {{--
-            <li class="{{ request()->is('*students*') ? 'active' : '' }}">
-                <a href="{{ route('students.index') }}">
+           
+            <li class="{{ request()->is('*statstics*') ? 'active' : '' }}">
+                <a href="{{ route('statstics.index') }}">
                     <i class="nc-icon nc-badge"></i>
-                    <p>Students</p>
+                    <p>skills</p>
                 </a>
             </li>
+             {{--
             <li>
             <li class="{{ request()->is('*galleries*') ? 'active' : '' }}">
                 <a href="{{ route('galleries.index') }}">

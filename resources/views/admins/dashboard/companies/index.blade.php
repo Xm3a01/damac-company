@@ -15,7 +15,7 @@
         <a href="{{ route('teams.create') }}" class="btn btn-round btn-primary">Add Team</a>
     </td>
     <td class="text-center">
-        <a href="{{ route('protfolios.create') }}" class="btn btn-round btn-primary">Add Portfolio</a>
+        <a href="{{ route('portfolios.create') }}" class="btn btn-round btn-primary">Add Portfolio</a>
     </td>
     <div class="card">
         <div class="card-header">

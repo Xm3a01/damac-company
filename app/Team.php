@@ -4,10 +4,14 @@ namespace App;
 
 use App\Company;
 use App\MediaLink;
+use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Team extends Model
+class Team extends Model implements HasMedia
 {
+   use InteractsWithMedia;
+
    protected $fillable = [
         'name',
         'job_title',

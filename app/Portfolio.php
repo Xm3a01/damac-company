@@ -3,10 +3,14 @@
 namespace App;
 
 use App\Company;
+use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
+use Spatie\MediaLibrary\InteractsWithMedia;
 
-class Portfolio extends Model
+class Portfolio extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+    
     protected $fillable = [
         'name',
         'hint',
@@ -17,5 +21,14 @@ class Portfolio extends Model
     public function company()
     {
         return $this->belongsTo(Company::class);
+    }
+    public function getImageAttribute()
+    {
+        return $this->getFirstMediaUrl('portfolios');
+    }
+
+    public function getImagesAttribute()
+    {
+        return $this->getMedia('portfolios');
     }
 }

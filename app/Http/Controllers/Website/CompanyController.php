@@ -12,8 +12,7 @@ class CompanyController extends Controller
     {
         $company = Company::latest()->first();
         $company->load(['services' , 'partiners' , 'portfolioes' , 'teams.links' , 'statstics']);
-
-        // dd($comapny);
+        
         return view('website.index', ['company' => $company]);
     }
 }
