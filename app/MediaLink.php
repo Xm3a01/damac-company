@@ -10,6 +10,7 @@ class MediaLink extends Model
     protected $fillable = [
         'name',
         'icon',
+        'link',
         'team_id',
     ];
 

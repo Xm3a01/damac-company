@@ -58,7 +58,7 @@
                         <div class="col-md-6 pr-1">
                             <div class="form-group">
                                 <label>Why us</label>
-                                <textarea name="why_us" id="" rows="10">{{$company->why_us}}</textarea>
+                                <textarea name="why_us" id="" rows="10" class="form-control"></textarea>
                             </div>
                         </div>
                         <div class="col-md-6 pr-1">

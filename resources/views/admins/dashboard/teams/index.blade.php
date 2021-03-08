@@ -15,6 +15,7 @@
                 <table class="table">
                     <thead class=" text-primary">
                         <tr>
+                            <th>image</th>
                             <th>name</th>
                             <th>job title</th>
                             <th>description</th>
@@ -25,9 +26,10 @@
                     <tbody>
                         @foreach ($teams as $team)
                         <tr>
+                            <td> <img src="{{$team->image}}" alt="" height="40" width="40" style="border-radius: 50%"></td>
                             <td>{{$team->name}}</td>
                             <td>{{$team->job_title}}</td>
-                            <td>{{ Str::words($value, $team->description, 10 , '') }}</td>
+                            <td>{{ Str::words($team->description, 10 , '') }}</td>
                             <td>
                                 <form action="{{route('teams.destroy' , $team->id)}}" method="post">  
                                     @csrf

@@ -29,4 +29,10 @@ class Team extends Model implements HasMedia
         return $this->hasMany(MediaLink::class);
     }
 
+    public function getImageAttribute()
+    {
+        return $this->getFirstMediaUrl('teams');
+    }
+
+
 }

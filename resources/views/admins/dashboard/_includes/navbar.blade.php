@@ -41,7 +41,7 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right" aria-labelledby="userAcountLink">
                         <a class="dropdown-item" href="#">Profile</a>
-                        <a class="dropdown-item" href="/logout">Sign Out</a>
+                        <a class="dropdown-item" href="/signout">Sign Out</a>
                     </div>
                 </li>
             </ul>

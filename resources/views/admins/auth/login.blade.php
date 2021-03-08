@@ -9,7 +9,7 @@
          
             <div class="">
     
-                <form action="{{route('admins.login')}}" method="POST">
+                <form action="{{route('login')}}" method="POST">
                   @csrf
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email address</label>

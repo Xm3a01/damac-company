@@ -7,75 +7,62 @@
             <div class="animated fadeIn">
                 <div class="row">
                     
-                    <div class="row">
-                    <div class="col-lg-12">
-                        <div class="card">
+                <div class="row">
+                <div class="col-lg-12">
+                    <div class="card">
                             
-                            <div class="card-block">
-                               <div class="col-md-5 m-x-auto pull-xs-none vamiddle">
+                <div class="card-block">
+                <div class="col-md-5 m-x-auto pull-xs-none vamiddle">
                 <div class="card">
                     <div class="card-block p-a-2">
                     
-                        <h1>تعديل صنف </h1>
+                        <h1>Team</h1>
 
-                        <form class="form-control" action="{{route('orders.update' , $order->id)}}" method="post" enctype="multipart/form-data">
+                        <form class="form-control" action="{{route('teams.update' , $team->id)}}" method="post" enctype="multipart/form-data">
                             @csrf
                             @method('PUT')
-                            <div class="input-group m-b-1">
-                             
-                         
-                                <input  name = "name" type="text" class="form-control" placeholder=" اسم المنتج " value="{{$order->name}}">
+                            <<div class="row">
+                                <div class="col-md-12 pr-1">
+                                    <div class="form-group">
+                                        <label>Name</label>
+                                        <input type="text" class="form-control" placeholder="Name" name="name" value="{{$team->name}}">
+                                    </div>
+                                </div>
                             </div>
-                      
-                           
-                           
-                            <div class="input-group m-b-1">
-                                <input type="number" step="0.01" name="quantity"  class="form-control" placeholder="   الكمية  " value="{{$order->quantity}}">
+                            <div class="row">
+                                <div class="col-md-12 pl-3">
+                                    <div class="form-group">
+                                        <label for="">Job title</label>
+                                        <input type="text" class="form-control" placeholder="Name" name="job_title" value="{{$team->job_title}}">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="input-group m-b-1">
-                                <input type="number" name="price" step="0.01"class="form-control" placeholder="  السعر  " value="{{$order->totalPrice / $order->quantity}}">
+                            <div class="row">
+                                <div class="col-md-12 pl-3">
+                                    <div class="form-group">
+                                        <label for="">Upload Image <button class="btn btn-primary">attche</button></label>
+                                        <input type="file" class="form-control" placeholder="File" name="image">
+                                    </div>
+                                </div>
                             </div>
-                           
-                            <div class="input-group m-b-1">
-                                
-                                <select name="user_id" id="" class="form-control">
-                                    <option value="">اسم المستخدم</option>
-                                    @foreach ($users as $user)
-                                        <option {{$order->user_id == $user->id ? 'selected' : ''}} value="{{$user->id}}">{{$user->name}}</option>
-                                    @endforeach
-                                </select>
+                            <div class="row">
+        
+                                <div class="col-md-12 pl-3">
+        
+                                    <div class="form-group">
+                                        <label>Description</label>
+                                        <textarea class="form-control textarea" name="description">{{$team->description}}</textarea>
+                                    </div>
+                                </div>
                             </div>
-                             <div class="input-group m-b-1">
-                                
-                            
-                               
-                            <div>
-                            <button type="submit" name ="save" class="btn btn-block btn-success">
-                               
-                                حفظ التعديلات     <i class="icon-plus"></i></button>
-                        </div>
-                           </form>    
+        
+                            <div class="row">
+                                <div class="update ml-auto mr-auto">
+                                    <button type="submit" class="btn btn-primary btn-round">Save Change</button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
-                    <!--/col-->
-                </div>
-                <!--/row-->
+                </div> 
             </div>
-        </div>
-                <!--/row-->
-
-                
-                                <!--/.row-->
-                                <br/>
-                                                                            
-                            </div>
-                        </div>
-                    </div>
-                    <!--/.col-->
-                </div>
-                <!--/.row-->
-            </div>
-
-        </div>
    @stop

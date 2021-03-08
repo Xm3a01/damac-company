@@ -16,7 +16,7 @@
                         <div class="col-7 col-md-8">
                             <div class="numbers">
                                 <p class="card-category">
-                                    Managers
+                                    Company
                                 </p>
                                 <p class="card-title">
                                     {{ $managers ?? '' }}
@@ -48,7 +48,7 @@
                         <div class="col-7 col-md-8">
                             <div class="numbers">
                                 <p class="card-category">
-                                    Cources
+                                    Service
                                 </p>
                                 <p class="card-title">
                                     {{ $cources ?? '' }}
@@ -80,7 +80,7 @@
                         <div class="col-7 col-md-8">
                             <div class="numbers">
                                 <p class="card-category">
-                                    Events
+                                    Partiners
                                 </p>
                                 <p class="card-title">
                                     {{ $events ?? '' }}
@@ -112,7 +112,7 @@
                         <div class="col-7 col-md-8">
                             <div class="numbers">
                                 <p class="card-category">
-                                    Students
+                                    Teams
                                 </p>
                                 <p class="card-title">
                                     {{ $students ?? '' }}

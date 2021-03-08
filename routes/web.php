@@ -12,7 +12,7 @@ Auth::routes();
 
 Route::get('/', 'website\CompanyController@index')->name('home');
 
-Route::prefix('dashboard')->group(function () {
+Route::prefix('dashboard')->middleware('auth')->group(function () {
     Route::get('/','Dashboard\IndexController@index')->name('dashboard');
     Route::resource('companies','Dashboard\companyController');
     Route::resource('services','Dashboard\ServiceController');
@@ -22,3 +22,4 @@ Route::prefix('dashboard')->group(function () {
     Route::resource('links','Dashboard\LinkController');
     Route::resource('partiners','Dashboard\PartinerController');
 });
+Route::get('signout', 'Auth\LoginController@logout')->name('signout');

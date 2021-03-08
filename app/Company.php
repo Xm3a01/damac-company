@@ -12,16 +12,16 @@ use Illuminate\Database\Eloquent\Model;
 class Company extends Model
 {
     protected $fillable = [
-         'name',
-'        about',
-'        about_section_1',
-'        about_section_2',
-'        about_section_3',
-'        why_us_title',
-'        why_us',
-'        why_us_section_1',
-'        why_us_section_2',
-'        why_us_section_3'
+        'name',
+        'about',
+        'about_section_1',
+        'about_section_2',
+        'about_section_3',
+        'why_us_title',
+        'why_us',
+        'why_us_section_1',
+        'why_us_section_2',
+        'why_us_section_3'
     ];
 
     public function services()

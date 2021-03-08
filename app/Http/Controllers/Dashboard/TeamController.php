@@ -3,11 +3,21 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Team;
+use App\Company;
+use App\MediaLink;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 class TeamController extends Controller
 {
+
+    public  $mediaTypes = [
+        '',
+        'Twitter',
+        'Facebook',
+        'Instagram',
+        'Linkedin',
+    ];
    
     public function index()
     {
@@ -18,7 +28,7 @@ class TeamController extends Controller
     
     public function create()
     {
-        return view('admins.dashboard.teams.create');
+        return view('admins.dashboard.teams.create' ,  ['mediaTypes' => $this->mediaTypes]);
     }
 
    
@@ -31,14 +41,38 @@ class TeamController extends Controller
         ]);
 
         $company = Company::latest()->first();
-        $request['company_id'] = $company->id;
+        if($company){
+            $request['company_id'] = $company->id;
+        } else {
+            \Session::flash('error' , 'You cannot add team without add company');
+            return back();
+        }
 
         $team = Team::create($request->except('image'));
 
         if($request->hasFile('image')) {   
-               $item = $request->image;   
+               $item = $request->image;
+               $ex = $item->getClientOriginalExtension(); 
                 $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
                 $team->addMedia($item)->usingFileName($fileName)->preservingOriginal()->toMediaCollection('teams');
+        }
+
+        if($request->link){
+            foreach($request->link as $index => $link) {
+
+                
+                if($link != "value" && $link != '') {
+
+                    // dd($request->link);
+            
+                    MediaLink::create([
+                        'name' =>'media_'.$index,
+                        'link' => $link,
+                        'icon' => $index,
+                        'team_id' => $team->id
+                    ]);
+                }
+            }
         }
         
         \Session::flash('success' , 'team successfully add');
@@ -76,7 +110,7 @@ class TeamController extends Controller
                 $team->addMedia($item)->usingFileName($fileName)->preservingOriginal()->toMediaCollection('teams');
         }
         
-        \Session::flash('success' , 'team successfully add');
+        \Session::flash('success' , 'team successfully update');
         return redirect()->route('teams.index');
     }
 
@@ -86,9 +120,9 @@ class TeamController extends Controller
         if($team->image){
             $team->clearMediaCollection('teams');
         }
-        $item->delete();
+        $team->delete();
 
-        \Session::flash('success' , 'team successfully add');
+        \Session::flash('success' , 'team successfully delete');
         return redirect()->route('teams.index');
     }
 }

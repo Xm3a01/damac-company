@@ -35,25 +35,32 @@
                     </thead>
                     <tbody>
 
-                            <tr>
-                                <td> <img src="{{ $company->image ? $company->image  : asset('assets/images/noImage.png') }}" alt="Image" height="45" width="45"></td>
-                                <td>{{ $company->name }}</td>
-                                <td>{{ Str::limit($company->about, 40) }}</td>
-                                <td>{{ Str::limit($company->why_us, 40) }}</td>
+                        @if (!is_null($company))
+                            
+                        <tr>
+                            <td> <img src="{{ $company->image ? $company->image  : asset('assets/images/noImage.png') }}" alt="Image" height="45" width="45"></td>
+                            <td>{{ $company->name }}</td>
+                            <td>{{ Str::limit($company->about, 40) }}</td>
+                            <td>{{ Str::limit($company->why_us, 40) }}</td>
 
-                                <td>
-                                    {{-- <form action="{{ route('companies.destroy', $company->id) }}" method="POST">
-                                        @csrf
-                                        @method('DELETE') --}}
+                            <td>
+                                {{-- <form action="{{ route('companies.destroy', $company->id) }}" method="POST">
+                                    @csrf
+                                    @method('DELETE') --}}
 
-                                        <a title="Edit" href="{{ route('companies.edit', $company->id) }}"
-                                            class="btn btn-round btn-primary"><i class="nc-icon nc-settings"></i></a>
-                                        {{-- <button title="Delete" type="submit" class="btn btn-round btn-danger"><i
-                                                class="nc-icon nc-simple-remove"></i></button> --}}
-                                    {{-- </form> --}}
+                                    <a title="Edit" href="{{ route('companies.edit', $company->id) }}"
+                                        class="btn btn-round btn-primary"><i class="nc-icon nc-settings"></i></a>
+                                    {{-- <button title="Delete" type="submit" class="btn btn-round btn-danger"><i
+                                            class="nc-icon nc-simple-remove"></i></button> --}}
+                                {{-- </form> --}}
 
-                                </td>
-                            </tr>
+                            </td>
+                        </tr>
+                        @else
+                        <td class="text-center">
+                            <a href="{{ route('companies.create') }}" class="btn btn-round btn-primary">Add company</a>
+                        </td>
+                        @endif
 
                     </tbody>
                 </table>
