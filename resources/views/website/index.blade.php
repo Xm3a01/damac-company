@@ -1,4 +1,4 @@
-@extends('layouts.app')
+@extends('layouts.app' , ['type' => 'Home'])
 @section('content')
     
  {{-- @include('website.includes._header') --}}
@@ -66,7 +66,7 @@
             <p>
               {{ Str::limit($company->about, 200, '' ) }}
             </p>
-            <a href="#" class="btn-learn-more">Learn More</a>
+            <a href="{{route('web.about' , $company->id)}}" class="btn-learn-more">Learn More</a>
           </div>
         </div>
 
@@ -172,10 +172,10 @@
         <div class="row">
           @foreach ($company->services as $item)
           <div class="col-xl-3 col-md-6 d-flex align-items-stretch" data-aos="zoom-in" data-aos-delay="100" >
-            <div class="icon-box" style="height: auto; width: 218px;">
+            <div class="icon-box" style="height: auto; min-width: 218px;">
               <div class="icon"><i class="bx {{$item->icon}}"></i></div>
-              <h4><a href="">{{$item->name}}</a></h4>
-              <p>{{$item->description}}</p>
+              <h4><a href="{{route('web.services' , $item->id)}}">{{$item->name}}</a></h4>
+              <p>{{Str::words($item->description, 11, '...')}}</p>
             </div>
           </div>
           
@@ -230,7 +230,7 @@
                 <h4>{{$item->name}}</h4>
                 <p>{{$item->description}}</p>
                 <a href="{{$image->getUrl()}}" data-gall="portfolioGallery" class="venobox preview-link" title="{{$item->name}}"><i class="bx bx-plus"></i></a>
-                <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                <a href="{{route('web.portfolios' , $item)}}" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
               </div>
             </div>
            @endforeach

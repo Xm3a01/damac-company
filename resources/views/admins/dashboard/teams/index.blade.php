@@ -26,6 +26,7 @@
                     <tbody>
                         @foreach ($teams as $team)
                         <tr>
+                            {{-- {{$team->image}} --}}
                             <td> <img src="{{$team->image}}" alt="" height="40" width="40" style="border-radius: 50%"></td>
                             <td>{{$team->name}}</td>
                             <td>{{$team->job_title}}</td>

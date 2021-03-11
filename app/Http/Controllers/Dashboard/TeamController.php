@@ -6,10 +6,14 @@ use App\Team;
 use App\Company;
 use App\MediaLink;
 use Illuminate\Http\Request;
+use App\Traits\AttachmentTrait;
+use App\Http\Requests\TeamRequest;
 use App\Http\Controllers\Controller;
 
 class TeamController extends Controller
 {
+    use AttachmentTrait;
+    
 
     public  $mediaTypes = [
         '',
@@ -32,14 +36,9 @@ class TeamController extends Controller
     }
 
    
-    public function store(Request $request)
+    public function store(TeamRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'job_title' => 'required',
-            'description' => 'required',
-        ]);
-
+        
         $company = Company::latest()->first();
         if($company){
             $request['company_id'] = $company->id;
@@ -50,11 +49,10 @@ class TeamController extends Controller
 
         $team = Team::create($request->except('image'));
 
-        if($request->hasFile('image')) {   
-               $item = $request->image;
-               $ex = $item->getClientOriginalExtension(); 
-                $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
-                $team->addMedia($item)->usingFileName($fileName)->preservingOriginal()->toMediaCollection('teams');
+        if($request->hasFile('image')) {
+            $file = $request->image;
+            // $team->clearMediaCollection('teams');
+            $this->singleFile($file , $team , 'teams');
         }
 
         if($request->link){
@@ -92,22 +90,17 @@ class TeamController extends Controller
     }
 
     
-    public function update(Request $request, Team $team)
+    public function update(TeamRequest $request, Team $team)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'job_title' => 'required',
-            'description' => 'required',
-        ]);
 
         $team->update($request->except('image'));
 
-        if($request->hasFile('image')) { 
-               $team->clearMediaCollection('teams');
-               $item = $request->image;   
-                $ex = $item->getClientOriginalExtension();
-                $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
-                $team->addMedia($item)->usingFileName($fileName)->preservingOriginal()->toMediaCollection('teams');
+        
+        if($request->hasFile('image')) {
+            $file = $request->image;
+
+            $team->clearMediaCollection('teams');
+            $this->singleFile($file , $team , 'teams');
         }
         
         \Session::flash('success' , 'team successfully update');

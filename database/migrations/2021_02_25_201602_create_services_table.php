@@ -16,6 +16,7 @@ class CreateServicesTable extends Migration
         Schema::create('services', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('target');
             $table->text('description');
             $table->enum('icon', ['bxl-dribbble', 'bx-file' , 'bx-tachometer' , 'bx-layer'])->nullable();
             $table->foreignId('company_id')->constrained()->cascadeOnDelete();

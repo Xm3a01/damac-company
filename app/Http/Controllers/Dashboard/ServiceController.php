@@ -2,13 +2,26 @@
 
 namespace App\Http\Controllers\Dashboard;
 
-use App\Service;
 use App\Company;
+use App\Service;
 use Illuminate\Http\Request;
+use App\Traits\AttachmentTrait;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ServiceRequest;
 
 class ServiceController extends Controller
 {
+
+    use AttachmentTrait;
+
+
+    public $serviceType = [
+        'Icons',
+        'Tech Service',
+        'Report service',
+        'Quick service',
+        'Multi Service'
+    ];
    
     public function index()
     {
@@ -19,54 +32,55 @@ class ServiceController extends Controller
   
     public function create()
     {
-        return view('admins.dashboard.services.create');
+        return view('admins.dashboard.services.create' , ['serviceType' => $this->serviceType]);
     }
 
     
-    public function store(Request $request)
+    public function store(ServiceRequest $request)
     {
-        $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
-            'icon' => 'required',
-        ]);
 
         $company = Company::latest()->first();
 
-        $request['company_id'] = $company->id;
+        if(!is_null($company)){
+            $request['company_id'] = $company->id;
+          } else {
+          \Session::flash('error' , 'Comapnty is not created');
+          return back();
+          }
 
-        Service::create($request->all());
-        
+        $service = Service::create($request->except('images'));
+
+        if($request->hasFile('images')) {
+            $files = $request->images;
+
+            $this->multiFile($files , $service , 'services');
+        }
+
         \Session::flash('success' , 'Service successfully add');
         return redirect()->route('services.index');
     }
 
-   
-    public function show($id)
-    {
-        //
-    }
-
-    
     public function edit(Service $service)
     {
         return view('admins.dashboard.services.edit', [
             'service' => $service,
+            'serviceType' => $this->serviceType
         ]);
     }
 
     
-    public function update(Request $request, Service $service)
+    public function update(ServiceRequest $request, Service $service)
     {
 
-        $this->validate($request, [
-            'name' => 'required',
-            'description' => 'required',
-            'icon' => 'required',
-        ]);
-
-        $service->update($request->all());
+        $service->update($request->except('images'));
         
+        if($request->hasFile('images')) {
+            $files = $request->images;
+
+            $service->clearMediaCollection('services');
+            $this->multiFile($files , $service , 'services');
+        }
+
         \Session::flash('success' , 'Service successfully updated');
         return redirect()->route('services.index');
     }
@@ -74,6 +88,9 @@ class ServiceController extends Controller
    
     public function destroy(Service $service)
     {
+        if($service->images) {
+            $service->clearMediaCollection('services');
+        }
         $service->delete();
         
         \Session::flash('success' , 'Service successfully delete');

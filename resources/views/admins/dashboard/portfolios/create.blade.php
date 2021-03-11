@@ -17,12 +17,34 @@
                                 <input type="text" class="form-control" placeholder="Name" name="name">
                             </div>
                         </div>
+
+                        <div class="col-md-12 pr-1">
+                            <div class="form-group">
+                                <label>Client</label>
+                                <input type="text" class="form-control" placeholder="Client" name="client">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 pr-1">
+                            <div class="form-group">
+                                <label>Date</label>
+                                <input type="date" class="form-control" placeholder="Date" name="date">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 pr-1">
+                            <div class="form-group">
+                                <label>Url/Location</label>
+                                <input type="text" class="form-control" placeholder="Url" name="url">
+                            </div>
+                        </div>
+                        
                     </div>
                     <div class="row">
                         <div class="col-md-12 pl-3">
                             <div class="form-group">
                                 <label for="">Images</label>
-                                <input type="file" name="image[]" class="form-control" multiple>
+                                <input type="file" name="images[]" class="form-control" multiple>
                             </div> 
                         </div>
                     </div>

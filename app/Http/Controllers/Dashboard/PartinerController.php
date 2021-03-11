@@ -5,11 +5,15 @@ namespace App\Http\Controllers\Dashboard;
 use App\Company;
 use App\Partiner;
 use Illuminate\Http\Request;
+use App\Traits\AttachmentTrait;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\PartinerRequest;
 
 class PartinerController extends Controller
 {
    
+    use AttachmentTrait;
+    
     public function index()
     {
         $partiners =  Partiner::all();
@@ -23,22 +27,25 @@ class PartinerController extends Controller
     }
 
    
-    public function store(Request $request)
+    public function store(PartinerRequest $request)
     {
-        $this->validate($request , [
-            'name' => 'required'
-        ]);
 
         $company = Company::latest()->first();
 
-        $request['company_id'] = $company->id;
+        if(!is_null($company)){
+          $request['company_id'] = $company->id;
+        } else {
+        \Session::flash('error' , 'Comapnty is not created');
+        return back();
+        }
 
         $partiner = Partiner::create($request->except('logo'));
 
         if($request->hasFile('logo')) {
-            $ex = $request->logo->getClientOriginalExtension();
-            $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
-            $partiner->addMedia($request->logo)->usingFileName($fileName)->toMediaCollection('partiners');
+            $file = $request->logo;
+
+            // $partiner->clearMediaCollection();
+            $this->singleFile($file , $partiner , 'partiners');
         }
 
         \Session::flash('success' , 'Partiner successfully add');
@@ -58,20 +65,14 @@ class PartinerController extends Controller
     }
 
     
-    public function update(Request $request, Partiner $partiner)
+    public function update(PartinerRequest $request, Partiner $partiner)
     {
-        $this->validate($request , [
-            'name' => 'required'
-        ]);
 
         if($request->hasFile('logo')) {
             $file = $request->logo;
-            $ex = $file->getClientOriginalExtension();
-            $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
+
             $partiner->clearMediaCollection('partiners');
-            $partiner->addMedia($file)
-            ->usingFileName($fileName)
-            ->toMediaCollection('partiners');
+            $this->singleFile($file , $partiner , 'partiners');
         }
 
         $partiner->update($request->except('logo'));

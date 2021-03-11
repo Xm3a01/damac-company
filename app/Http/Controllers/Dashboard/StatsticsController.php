@@ -32,8 +32,15 @@ class StatsticsController extends Controller
         ]);
 
         $company = Company::latest()->first();
-        $request['company_id'] = $company->id;
-        Statstic::create($request->all());
+
+        if(!is_null($company)){
+            $request['company_id'] = $company->id;
+          } else {
+          \Session::flash('error' , 'Comapnty is not created');
+          return back();
+          }
+
+         Statstic::create($request->all());
 
         \Session::flash('success' , 'Skill successsfully add');
         return redirect()->route('statstics.index');

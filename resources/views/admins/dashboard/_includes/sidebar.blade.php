@@ -2,7 +2,8 @@
     <div class="logo">
         <a href="/dashboard" class="simple-text logo-small">
          <div class="logo-image-big">
-          <img src="/assets/images/favico.ico" height="90" width="100" class="col-md-6 offset-md-3">
+          {{-- <img src="/assets/images/favico.ico" height="90" width="100" class="col-md-6 offset-md-3"> --}}
+           Hash.D.P
         </div>
         </a>
     </div>

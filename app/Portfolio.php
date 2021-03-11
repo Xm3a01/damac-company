@@ -15,6 +15,10 @@ class Portfolio extends Model implements HasMedia
         'name',
         'hint',
         'company_id',
+        'client',
+        'url',
+        'date',
+        'description'
     ];
 
 

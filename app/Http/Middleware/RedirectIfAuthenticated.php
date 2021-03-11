@@ -22,7 +22,7 @@ class RedirectIfAuthenticated
             abort(403);
         } else {
             if (Auth::guard($guard)->check()) {
-                return redirect('dashboard');
+                return redirect('/dashboard');
             }
         }
 

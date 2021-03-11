@@ -5,7 +5,7 @@
     <div class="col-md-8">
         <div class="card card-user">
             <div class="card-header">
-                <h5 class="card-title">edit Trainer</h5>
+                <h5 class="card-title">Add Service</h5>
             </div>
             <div class="card-body">
                 <form action="{{ route('services.store') }}" method="POST" enctype="multipart/form-data">
@@ -17,15 +17,23 @@
                                 <input type="text" class="form-control" placeholder="Name" name="name">
                             </div>
                         </div>
-                    </div>
-                    {{-- <div class="row">
-                        <div class="col-md-4 pl-3">
+
+                        <div class="col-md-12 pr-1">
                             <div class="form-group">
-                                <label for="">Description</label>
-                                <textarea class="form-control" name="description" id="" cols="30" rows="10"></textarea>
+                                <label>Target/Companies</label>
+                                <input type="text" class="form-control" placeholder="Target/Companies" name="target">
                             </div>
                         </div>
-                    </div> --}}
+
+                        <div class="col-md-12 pr-1">
+                            <div class="form-group">
+                                <label style="color: blue; mouse:pointer">Attache Images</label>
+                                <input type="file" class="form-control-file" placeholder="Traget/Companies" name="images[]" multiple>
+                            </div>
+                        </div>
+
+                    </div>
+
                     <div class="row">
 
                         <div class="col-md-12 pl-3">
@@ -47,11 +55,9 @@
                             <div class="form-group">
                                 <label for="twitter" class="col-md-8">Service icon</label>
                                 <select name="icon" id="" class="form-control">
-                                    <option value="">Icons</option>
-                                    <option value="0">Tech Service</option>
-                                    <option value="1">Report service</option>
-                                    <option value="2">Quick service</option>
-                                    <option value="3">Multi Service</option>
+                                    @foreach ($serviceType as $index => $service)         
+                                      <option value="{{$index == 0 ? '': $index}}">{{$service }}</option>
+                                    @endforeach
                                 </select>
                             </div>
                         </div>

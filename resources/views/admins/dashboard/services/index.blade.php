@@ -2,9 +2,11 @@
 
 @section('content')
 
-    <td class="text-center">
-        <a  href="{{route('services.create')}}" class="btn btn-round btn-primary">Add Service</a>
-    </td>
+@if ($services->count() <= 4)  
+<td class="text-center">
+    <a  href="{{route('services.create')}}" class="btn btn-round btn-primary">Add Service</a>
+</td>
+@endif
 
     <div class="card">
         <div class="card-header">

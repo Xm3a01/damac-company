@@ -18,15 +18,22 @@
                                 <input type="text" class="form-control" placeholder="Name" name="name" value="{{$service->name}}">
                             </div>
                         </div>
-                    </div>
-                    {{-- <div class="row">
-                        <div class="col-md-4 pl-3">
+
+                        <div class="col-md-12 pr-1">
                             <div class="form-group">
-                                <label for="">Description</label>
-                                <textarea class="form-control" name="description" id="" cols="30" rows="10"></textarea>
+                                <label>Target/Companies</label>
+                                <input type="text" class="form-control" placeholder="Target/Companies" name="target" value="{{$service->target}}">
                             </div>
                         </div>
-                    </div> --}}
+
+                        <div class="col-md-12 pr-1">
+                            <div class="form-group">
+                                <label>Attache Images</label>
+                                <input type="text" class="form-control" placeholder="Traget/Companies" name="images[]" multiple value="{{$service->images}}">
+                            </div>
+                        </div>
+                        
+                    </div>
                     <div class="row">
 
                         <div class="col-md-12 pl-3">
@@ -38,29 +45,6 @@
                         </div>
                     </div>
 
-                    <h4>Show</h4>
-                    <hr>
-
-                    <div class="mediaForm">
-                    {{-- @foreach ($mediaTypes as $i => $type)   --}}
-                    <div class="row">
-                        <div class="col-md-12 pl-3">
-                            <div class="form-group">
-                                <label for="twitter" class="col-md-8">Service icon</label>
-                                <select name="icon" id="" class="form-control">
-                                    <option value="">Icons</option>
-                                    <option value="0">Tech Service</option>
-                                    <option value="1">Report service</option>
-                                    <option value="2">Quick service</option>
-                                    <option value="3">Multi Service</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- @endforeach --}}
-
-                            
-                        </div>
                     <div class="row">
                         <div class="update ml-auto mr-auto">
                             <button type="submit" class="btn btn-primary btn-round">Update</button>
@@ -74,19 +58,3 @@
 
 
 @stop
-
-@section('scripts')
-@endsection
-<script>
-    function x(id, i) {
-        console.log(id)
-        if (id == 'media_' + i) {
-            checkbox = document.getElementById('media_' + i);
-            if (checkbox.checked)
-                item = document.getElementById('url_' + i).style.display = "inline";
-            else
-                item = document.getElementById('url_' + i).style.display = "none";
-        }
-    }
-
-</script>

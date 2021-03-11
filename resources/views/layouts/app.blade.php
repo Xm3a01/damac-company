@@ -31,7 +31,7 @@
 
 <body>
     {{-- Heaer --}}
-    @include('website.includes._header')
+    @include('website.includes._header' , ['type' => $type])
 
     @yield('hero')
 

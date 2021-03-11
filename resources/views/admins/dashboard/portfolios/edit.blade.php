@@ -8,14 +8,35 @@
                 <h5 class="card-title">Edit Service</h5>
             </div>
             <div class="card-body">
-                <form action="{{ route('services.update' , $service->id) }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('portfolios.update' , $portfolio->id) }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
                     <div class="row">
                         <div class="col-md-12 pr-1">
                             <div class="form-group">
                                 <label>Name</label>
-                                <input type="text" class="form-control" placeholder="Name" name="name" value="{{$service->name}}">
+                                <input type="text" class="form-control" placeholder="Name" name="name" value="{{$portfolio->name}}">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 pr-1">
+                            <div class="form-group">
+                                <label>Client</label>
+                                <input type="text" class="form-control" placeholder="Client" name="client" value="{{$portfolio->client}}">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 pr-1">
+                            <div class="form-group">
+                                <label>Date</label>
+                                <input type="date" class="form-control" placeholder="Date" name="date" value="{{$portfolio->date}}">
+                            </div>
+                        </div>
+
+                        <div class="col-md-12 pr-1">
+                            <div class="form-group">
+                                <label>Url/Location</label>
+                                <input type="text" class="form-control" placeholder="Url" name="url" value="{{$portfolio->url}}">
                             </div>
                         </div>
                     </div>
@@ -23,7 +44,7 @@
                         <div class="col-md-4 pl-3">
                             <div class="form-group">
                                 <label for="">Upload Image</label>
-                                <input type="file" name="image" multiple class="form-control">
+                                <input type="file" name="images[]" multiple class="form-control">
                             </div>
                         </div>
                     </div>
@@ -33,34 +54,11 @@
 
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control textarea" name="description">{{$service->description}}</textarea>
+                                <textarea class="form-control textarea" name="description">{{$portfolio->description}}</textarea>
                             </div>
                         </div>
+                    </div>           
                     </div>
-
-                    <h4>Show</h4>
-                    <hr>
-
-                    <div class="mediaForm">
-                    {{-- @foreach ($mediaTypes as $i => $type)   --}}
-                    <div class="row">
-                        <div class="col-md-12 pl-3">
-                            <div class="form-group">
-                                <label for="twitter" class="col-md-8">Service icon</label>
-                                <select name="icon" id="" class="form-control">
-                                    <option value="">Icons</option>
-                                    <option value="0">Tech Service</option>
-                                    <option value="1">Report service</option>
-                                    <option value="2">Quick service</option>
-                                    <option value="3">Multi Service</option>
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- @endforeach --}}
-
-                            
-                        </div>
                     <div class="row">
                         <div class="update ml-auto mr-auto">
                             <button type="submit" class="btn btn-primary btn-round">Update</button>
@@ -74,19 +72,3 @@
 
 
 @stop
-
-@section('scripts')
-@endsection
-<script>
-    function x(id, i) {
-        console.log(id)
-        if (id == 'media_' + i) {
-            checkbox = document.getElementById('media_' + i);
-            if (checkbox.checked)
-                item = document.getElementById('url_' + i).style.display = "inline";
-            else
-                item = document.getElementById('url_' + i).style.display = "none";
-        }
-    }
-
-</script>

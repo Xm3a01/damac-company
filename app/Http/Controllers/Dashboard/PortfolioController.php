@@ -5,11 +5,14 @@ namespace App\Http\Controllers\Dashboard;
 use App\Company;
 use App\Portfolio;
 use Illuminate\Http\Request;
+use App\Traits\AttachmentTrait;
 use App\Http\Controllers\Controller;
 
 class PortfolioController extends Controller
 {
    
+    use AttachmentTrait;
+    
     public function index()
     {
         $portfolios = Portfolio::paginate(100);
@@ -28,16 +31,20 @@ class PortfolioController extends Controller
         ]);
 
         $company = Company::latest()->first();
-        $request['company_id'] = $company->id;
+        if(!is_null($company)){
+            $request['company_id'] = $company->id;
+          } else {
+          \Session::flash('error' , 'Comapnty is not created');
+          return back();
+          }
 
         $portfolio = Portfolio::create($request->except('image'));
 
-        if($request->hasFile('image')) {
-            foreach ($request->image as $item) {        
-                $ex = $item->getClientOriginalExtension();
-                $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
-                $portfolio->addMedia($item)->usingFileName($fileName)->preservingOriginal()->toMediaCollection('portfolios');
-            }
+        if($request->hasFile('images')) {
+            $files = $request->images;
+
+            // $portfolio->clearMediaCollection();
+            $this->multiFile($files , $portfolio , 'portfolios');
         }
         
         \Session::flash('success' , 'Portfolio successfully add');
@@ -62,15 +69,13 @@ class PortfolioController extends Controller
             'name' => 'required',
         ]);
 
-        $portfolio->update($request->excpt('image'));
+        $portfolio->update($request->except('images'));
 
-        if($request->hasFile('image')) {
-            $portfolio->clearMediaCollection('portfolios');   
-            foreach ($request->image as $item) {     
-                $ex = $item->getClientOriginalExtension();
-                $fileName =  md5(date('Y-m-d H:i:s:u')).'.'.$ex;
-                $portfolio->addMedia($item)->usingFileName($fileName)->preservingOriginal()->toMediaCollection('portfolios');
-            }
+        if($request->hasFile('images')) {
+            $files = $request->images;
+
+            $portfolio->clearMediaCollection('portfolios');
+            $this->multiFile($files , $portfolio , 'portfolios');
         }
         
         \Session::flash('success' , 'Portfolio successfully updated');
@@ -81,7 +86,7 @@ class PortfolioController extends Controller
     public function destroy(Portfolio $portfolio)
     {
         if($portfolio->image) {
-            $partiner->clearMediaCollection('partiners');
+            $partiner->clearMediaCollection('portfolios');
         }
         $portfolio->delete();
         
