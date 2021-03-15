@@ -25,8 +25,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $company = Company::latest()->first();
-
-        View::share('company' , $company);
+        
     }
 }

@@ -10,10 +10,10 @@ Route::get('/test', function () {
 
 Auth::routes();
 
-Route::get('/', 'website\CompanyController@index')->name('home'); 
-Route::get('web/portfolios/{item}', 'website\CompanyController@portfolio')->name('web.portfolios'); 
-Route::get('web/services/{item}', 'website\CompanyController@service')->name('web.services'); 
-Route::get('web/about/{item}', 'website\CompanyController@about')->name('web.about'); 
+Route::get('/', 'Website\CompanyController@index')->name('home'); 
+Route::get('web/portfolios/{item}', 'Website\CompanyController@portfolio')->name('web.portfolios'); 
+Route::get('web/services/{item}', 'Website\CompanyController@service')->name('web.services'); 
+Route::get('web/about/{item}', 'Website\CompanyController@about')->name('web.about'); 
 // web.portfolios
 
 Route::prefix('dashboard')->middleware('auth')->group(function () {

@@ -69,7 +69,7 @@ class ServiceController extends Controller
     }
 
     
-    public function update(ServiceRequest $request, Service $service)
+    public function update($request, Service $service)
     {
 
         $service->update($request->except('images'));
