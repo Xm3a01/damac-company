@@ -17,25 +17,26 @@ class ServiceController extends Controller
 
     public $serviceType = [
         'Icons',
-        'Tech Service',
+        'Others Service',
         'Report service',
         'Quick service',
-        'Multi Service'
+        'Multi Service',
+        'Build Service'
     ];
-   
+
     public function index()
     {
         $services = Service::paginate(100);
         return view('admins.dashboard.services.index' , ['services' => $services]);
     }
 
-  
+
     public function create()
     {
         return view('admins.dashboard.services.create' , ['serviceType' => $this->serviceType]);
     }
 
-    
+
     public function store(ServiceRequest $request)
     {
 
@@ -68,12 +69,12 @@ class ServiceController extends Controller
         ]);
     }
 
-    
+
     public function update($request, Service $service)
     {
 
         $service->update($request->except('images'));
-        
+
         if($request->hasFile('images')) {
             $files = $request->images;
 
@@ -85,14 +86,14 @@ class ServiceController extends Controller
         return redirect()->route('services.index');
     }
 
-   
+
     public function destroy(Service $service)
     {
         if($service->images) {
             $service->clearMediaCollection('services');
         }
         $service->delete();
-        
+
         \Session::flash('success' , 'Service successfully delete');
         return redirect()->route('services.index');
     }

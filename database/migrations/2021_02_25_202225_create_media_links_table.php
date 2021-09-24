@@ -17,7 +17,7 @@ class CreateMediaLinksTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('link');
-            $table->enum('icon', ['ri-twitter-fill', 'ri-facebook-fill' , 'ri-instagram-fill' , 'ri-linkedin-box-fill'])->nullable();
+            $table->enum('icon', ['bi-twitter', 'bi-facebook' , 'bi-instagram' , 'bi-linkedin'])->nullable();
             $table->foreignId('team_id')->constrained()->cascadeOnDelete();
             $table->timestamps();
         });

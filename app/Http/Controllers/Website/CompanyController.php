@@ -36,4 +36,9 @@ class CompanyController extends Controller
     {
         return view('website.about-details', ['about' => $item]);
     }
+
+    public function contact()
+    {
+        return view('website.contact');
+    }
 }
