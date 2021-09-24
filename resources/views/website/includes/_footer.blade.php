@@ -18,16 +18,16 @@
           <div class="col-lg-2 col-md-6 footer-links">
             <h4>روابط للموقع</h4>
             <ul>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Home</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Services</a></li>
-              <li><i class="bx bx-chevron-right"></i> <a href="#">Contact</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">الرئسيه</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">الخدمات</a></li>
+              <li><i class="bx bx-chevron-right"></i> <a href="#">اتصل بنا</a></li>
             </ul>
           </div>
 
           <div class="col-lg-3 col-md-6 footer-links">
             <h4>خدماتنا</h4>
             <ul>
-                @foreach ($company->services as $service)
+                @foreach ($company->services->take(5) as $service)
                 <li><i class="bx bx-chevron-right"></i> <a href="#">{{$service->name}}</a></li>
                 @endforeach
             </ul>

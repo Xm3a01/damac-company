@@ -583,6 +583,9 @@ section {
     background: url('../img/land1.jpg') fixed center center;
 }
 .services .icon-box {
+  height: 348px;
+  width: 341.31px;
+  margin: 8px;
   text-align: center;
   padding: 70px 20px 80px 20px;
   transition: all ease-in-out 0.3s;
