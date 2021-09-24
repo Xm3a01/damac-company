@@ -11,26 +11,26 @@ use App\Http\Requests\PartinerRequest;
 
 class PartinerController extends Controller
 {
-   
+
     use AttachmentTrait;
-    
+
     public function index()
     {
         $partiners =  Partiner::all();
         return view('admins.dashboard.partiners.index' , ['partiners' => $partiners]);
     }
 
-    
+
     public function create()
     {
         return view('admins.dashboard.partiners.create');
     }
 
-   
+
     public function store(PartinerRequest $request)
     {
 
-        $company = Company::latest()->first();
+        $company = Company::first();
 
         if(!is_null($company)){
           $request['company_id'] = $company->id;
@@ -52,19 +52,19 @@ class PartinerController extends Controller
         return redirect()->route('partiners.index');
     }
 
-    
+
     public function show(Partiner $partiner)
     {
         return view('admins.dashboard.partiners.show' , ['partiner' => $partiner]);
     }
 
-  
+
     public function edit(Partiner $partiner)
     {
         return view('admins.dashboard.partiners.edit' , ['partiner' => $partiner]);
     }
 
-    
+
     public function update(PartinerRequest $request, Partiner $partiner)
     {
 
@@ -81,7 +81,7 @@ class PartinerController extends Controller
         return redirect()->route('partiners.index');
     }
 
-   
+
     public function destroy(Partiner $partiner)
     {
         if($partiner->logo) {

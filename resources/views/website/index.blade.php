@@ -78,9 +78,9 @@
 
           <div class="row content">
             <div class="col-lg-6" data-aos="fade-right" >
-              <h2>الاهداف:-</h2>
+              <h2>الرساله:-</h2>
               <p>
-                  {{$company->goal ?? ""}}
+                  {!! $company->goal ?? ""!!}
               </p>
               </div>
             <div class="col-lg-6 pt-4 pt-lg-0" data-aos="fade-left">
@@ -138,7 +138,8 @@
         <div class="row portfolio-container" data-aos="fade-up">
             @foreach ($company->portfolioes as $key => $proto)
                 @foreach ($proto->getMedia('portfolios') as $image)
-            <div class="col-lg-4 col-md-6 portfolio-item filter-{{$proto->id}}">
+                <div class="col-lg-4 col-md-6  portfolio-item filter-{{$proto->id}}">
+                <a href="{{$image->getUrl()}}" data-gallery="portfolioGallery">
                 <img src="{{$image->getUrl()}}" class="img-fluid" alt="">
                 <div class="portfolio-info rounded-3 row">
                     <div class="col-md-12">
@@ -147,11 +148,12 @@
                   <code>{{$proto->date}}</code>
 
                     </div>
-                  <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
-                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a>
+                  {{-- <a href="assets/img/portfolio/portfolio-1.jpg" data-gallery="portfolioGallery" class="portfolio-lightbox preview-link" title="App 1"><i class="bx bx-plus"></i></a>
+                  <a href="portfolio-details.html" class="details-link" title="More Details"><i class="bx bx-link"></i></a> --}}
 
 
                 </div>
+                </a>
               </div>
               @endforeach
               @endforeach

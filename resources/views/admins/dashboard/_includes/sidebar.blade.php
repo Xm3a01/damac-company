@@ -3,7 +3,7 @@
         <a href="/dashboard" class="simple-text logo-small">
          <div class="logo-image-big">
           {{-- <img src="/assets/images/favico.ico" height="90" width="100" class="col-md-6 offset-md-3"> --}}
-           Hash.D.P
+           Damac
         </div>
         </a>
     </div>
@@ -17,7 +17,7 @@
             </li>
 
             <li class="{{ request()->is('*companies*') ? 'active' : '' }}">
-                <a href="{{ route('companies.index') }}">
+                <a href="{{ route('companies.create') }}">
                     <i class="nc-icon nc-bell-55"></i>
                     <p>Companies</p>
                 </a>
@@ -29,12 +29,12 @@
                     <p>Services</p>
                 </a>
             </li>
-            <li class="{{ request()->is('*teams*') ? 'active' : '' }}">
+            {{-- <li class="{{ request()->is('*teams*') ? 'active' : '' }}">
                 <a href="{{ route('teams.index') }}">
                     <i class="nc-icon nc-bell-55"></i>
                     <p>Team</p>
                 </a>
-            </li>
+            </li> --}}
             <li class="{{ request()->is('*portfolios*') ? 'active' : '' }}">
                 <a href="{{ route('portfolios.index') }}">
                     <i class="nc-icon nc-caps-small"></i>
@@ -48,20 +48,20 @@
                     <p>Partiners</p>
                 </a>
             </li>
-             
-            <li class="{{ request()->is('*links*') ? 'active' : '' }}">
+
+            {{-- <li class="{{ request()->is('*links*') ? 'active' : '' }}">
                 <a href="{{ route('links.index') }}">
                     <i class="nc-icon nc-single-02"></i>
                     <p>Media links</p>
                 </a>
-            </li>
-           
-            <li class="{{ request()->is('*statstics*') ? 'active' : '' }}">
+            </li> --}}
+
+            {{-- <li class="{{ request()->is('*statstics*') ? 'active' : '' }}">
                 <a href="{{ route('statstics.index') }}">
                     <i class="nc-icon nc-badge"></i>
                     <p>skills</p>
                 </a>
-            </li>
+            </li> --}}
              {{--
             <li>
             <li class="{{ request()->is('*galleries*') ? 'active' : '' }}">

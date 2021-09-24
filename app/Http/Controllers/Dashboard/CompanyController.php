@@ -15,13 +15,14 @@ class CompanyController extends Controller
      */
     public function index()
     {
-        $company = Company::latest()->first();
+        $company = Company::first();
         return view('admins.dashboard.companies.index' , ['company' => $company]);
     }
 
     public function create()
     {
-        return view('admins.dashboard.companies.create');
+        $company = Company::first();
+        return view('admins.dashboard.companies.create' , ['company' => $company]);
     }
 
     public function store(Request $request)
@@ -33,7 +34,10 @@ class CompanyController extends Controller
             'goal' => 'required'
         ]);
 
-        $company = new  Company();
+        $company = Company::first();
+        if(is_null($company)) {
+           $company = new  Company();
+        }
 
         if($request->has('about')) {
             $company->about = $request->about;

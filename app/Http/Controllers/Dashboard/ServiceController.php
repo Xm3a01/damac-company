@@ -40,7 +40,7 @@ class ServiceController extends Controller
     public function store(ServiceRequest $request)
     {
 
-        $company = Company::latest()->first();
+        $company = Company::first();
 
         if(!is_null($company)){
             $request['company_id'] = $company->id;

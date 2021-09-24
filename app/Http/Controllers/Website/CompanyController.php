@@ -12,7 +12,7 @@ class CompanyController extends Controller
 {
     public function index()
     {
-        $company = Company::latest()->first();
+        $company = Company::first();
         if(!is_null($company)){
           $company->load(['services' , 'partiners' , 'portfolioes' , 'teams.links' , 'statstics']);
         } else {

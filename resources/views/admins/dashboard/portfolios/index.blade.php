@@ -18,28 +18,28 @@
                             {{-- <th>Icon</th> --}}
                             <th>Name</th>
                             <th>Action </th>
-                          
+
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($portfolios as $portfolio)
-                        {{$portfolio->getMedia('portfolio')}}
+                        {{-- {{$portfolio->getMedia('portfolio')}} --}}
                         <tr>
                             <td><img src="{{$portfolio->getFirstMediaUrl('portfolios')}}" alt="" height="40" width="40" class="rounded-full"></td>
                             <td>{{$portfolio->name}}</td>
                             <td>
-                                <form action="{{route('portfolios.destroy' , $portfolio->id)}}" method="post">  
+                                <form action="{{route('portfolios.destroy' , $portfolio->id)}}" method="post">
                                     @csrf
                                     @method('DELETE')
                                     <a  href="{{route('portfolios.edit' , $portfolio->id)}}" class="btn btn-round btn-primary"><i
                                             class="nc-icon nc-settings"></i></a>
-    
+
                                     <button   type="submit" class="btn btn-round btn-danger"><i
                                             class="nc-icon nc-simple-remove"></i></button>
                                 </form>
                             </td>
                         </tr>
-                            
+
                         @endforeach
 
                     </tbody>
