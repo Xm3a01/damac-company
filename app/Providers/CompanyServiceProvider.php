@@ -25,9 +25,9 @@ class CompanyServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $company = Company::first()->with(['services' , 'partiners' , 'portfolioes' , 'teams.links' , 'statstics']);
-        // $company->load(['services' , 'partiners' , 'portfolioes' , 'teams.links' , 'statstics']);
-        // dd($company->id);
+        $company = Company::first();
+        $company->load(['services' , 'partiners' , 'portfolioes' , 'teams.links' , 'statstics']);
+        // dd($company->services);
         View::share('company' , $company);
     }
 }
